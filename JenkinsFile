@@ -11,6 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                ionic cordova build android --prod --release
             }
         }
         stage('Test') {
