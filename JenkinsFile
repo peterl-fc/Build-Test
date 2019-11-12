@@ -59,7 +59,7 @@ pipeline {
             mandatory: false,
             notifyTeam: false,
             // releaseNotesMethod: [$class: 'ManualReleaseNotes', releaseNotes: releaseNotes],
-            uploadMethod: [$class: 'VersionCreation', appId: 840c309a8d9e475fba609a9fc350461f]
+            uploadMethod: [$class: 'VersionCreation', appId: '840c309a8d9e475fba609a9fc350461f']
         ]],
         debugMode: false,
         failGracefully: false
