@@ -1,28 +1,71 @@
 pipeline {
-    agent any
+   agent any
+    //   environment {
+    //      PATH='/usr/local/bin:/usr/bin:/bin'
+    //   }
+   stages {
+//       stage('NPM Setup') {
+//       steps {
+//          sh 'npm install'
+//       }
+//    }
 
-    
-    stages {
-        stage('Checkout code') {
-            steps {
-                checkout scm
-            }
+    stage('Checkout code') {
+        steps {
+            checkout scm
         }
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                ionic cordova build android --prod --release
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+
+//    stage('IOS Build') {
+//    steps {
+//       bat 'ionic cordova build ios --release'
+//      } 
+//   }
+
+   stage('Android Build') {
+        steps {
+            bat 'ionic cordova build android --prod --release'
         }
     }
+
+   stage('APK Sign') {
+        steps {
+            bat 'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore -keypass MCapp1481 C:\\Users\\admin\\source\\repos\\FoodsConnected\\mc.app\\platforms\\android\\app\\build\\outputs\\apk\\release\\app-release-unsigned.apk MeatConnected'
+        }
+   }
+
+   stage('APK Zip') {
+        steps {
+            bat 'zipalign -v 4 C:\\Users\\admin\\source\\repos\\FoodsConnected\\mc.app\\platforms\\android\\app\\build\\outputs\\apk\\release\\app-release-unsigned.apk FoodsConnected.apk'
+        }
+   }
+
+   stage('Publish iOS') {
+        steps {
+            echo "Publish iOS Action"
+        }
+   }
+
+   stage('Publish Android') {
+        steps {
+            echo "Publish Android API Action"
+
+        [
+        $class: 'HockeyappRecorder',
+        applications: [[
+            apiToken: '3186a1a662aa4822aa8924a4aabc63fc',
+            downloadAllowed: true,
+            filePath: 'C:\\Users\\admin\\source\\repos\\FoodsConnected\\mc.app\\FoodsConnected.apk',
+            dsymPath: workspaceRelativeDSymPath,
+            mandatory: false,
+            notifyTeam: false,
+            // releaseNotesMethod: [$class: 'ManualReleaseNotes', releaseNotes: releaseNotes],
+            uploadMethod: [$class: 'VersionCreation', appId: 840c309a8d9e475fba609a9fc350461f]
+        ]],
+        debugMode: false,
+        failGracefully: false
+    )
+        }
+    }
+
+ }
 }
