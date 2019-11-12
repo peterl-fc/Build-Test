@@ -1,7 +1,7 @@
 pipeline {
    agent any
       environment {
-         PATH='C:\\Users\\admin\\source\\repos\\FoodsConnected\\mc.app'
+         PATH='C:\Users\admin\source\repos\FoodsConnected\mc.app'
       }
    stages {
 //       stage('NPM Setup') {
@@ -30,13 +30,13 @@ pipeline {
 
    stage('APK Sign') {
         steps {
-            bat 'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore -keypass MCapp1481 C:\\Users\\admin\\source\\repos\\FoodsConnected\\mc.app\\platforms\\android\\app\\build\\outputs\\apk\\release\\app-release-unsigned.apk MeatConnected'
+            bat 'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore -keypass MCapp1481 C:\Users\admin\source\repos\FoodsConnected\mc.app\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk MeatConnected'
         }
    }
 
    stage('APK Zip') {
         steps {
-            bat 'zipalign -v 4 C:\\Users\\admin\\source\\repos\\FoodsConnected\\mc.app\\platforms\\android\\app\\build\\outputs\\apk\\release\\app-release-unsigned.apk FoodsConnected.apk'
+            bat 'zipalign -v 4 C:\Users\admin\source\repos\FoodsConnected\mc.app\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk FoodsConnected.apk'
         }
    }
 
@@ -55,7 +55,7 @@ pipeline {
         applications: [[
             apiToken: '3186a1a662aa4822aa8924a4aabc63fc',
             downloadAllowed: true,
-            filePath: 'C:\\Users\\admin\\source\\repos\\FoodsConnected\\mc.app\\FoodsConnected.apk',
+            filePath: 'C:\Users\admin\source\repos\FoodsConnected\mc.app\FoodsConnected.apk',
             dsymPath: workspaceRelativeDSymPath,
             mandatory: false,
             notifyTeam: false,
