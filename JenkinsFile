@@ -50,7 +50,7 @@ pipeline {
         steps {
             echo "Publish Android API Action"
 
-        [
+        
         $class: 'HockeyappRecorder',
         applications: [[
             apiToken: '3186a1a662aa4822aa8924a4aabc63fc',
@@ -64,7 +64,7 @@ pipeline {
         ]],
         debugMode: false,
         failGracefully: false
-    ]
+    
         }
     }
 
