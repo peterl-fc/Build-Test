@@ -63,7 +63,7 @@ pipeline {
         ]],
         debugMode: false,
         failGracefully: false
-    )
+    ]
         }
     }
 
