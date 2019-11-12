@@ -1,8 +1,8 @@
 pipeline {
    agent any
-    //   environment {
-    //      PATH='/usr/local/bin:/usr/bin:/bin'
-    //   }
+      environment {
+         PATH='C:\\Users\\admin\\source\\repos\\FoodsConnected\\mc.app'
+      }
    stages {
 //       stage('NPM Setup') {
 //       steps {
