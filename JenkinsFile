@@ -56,7 +56,7 @@ pipeline {
             apiToken: '3186a1a662aa4822aa8924a4aabc63fc',
             downloadAllowed: true,
             filePath: 'C:\\Users\\admin\\source\\repos\\FoodsConnected\\mc.app\\FoodsConnected_121119.apk',
-            dsymPath: workspaceRelativeDSymPath,
+            // dsymPath: workspaceRelativeDSymPath,
             mandatory: false,
             notifyTeam: false,
             // releaseNotesMethod: [$class: 'ManualReleaseNotes', releaseNotes: releaseNotes],
