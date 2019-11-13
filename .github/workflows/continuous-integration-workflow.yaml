@@ -3,7 +3,8 @@ name: Greet Everyone
 on: 
   push:
     branches: 
-      - 'workflowTest'
+      - '!master'
+      # - 'workflowTest'
 
 jobs:
   build:
