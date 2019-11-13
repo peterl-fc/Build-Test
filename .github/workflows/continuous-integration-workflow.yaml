@@ -3,7 +3,7 @@ name: Greet Everyone
 on: 
   push:
     branches-ignore: 
-      master
+      - master
 
 jobs:
   build:
